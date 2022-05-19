@@ -32,7 +32,7 @@ module.exports.findById = (req, res, next) => {
 
 module.exports.findByIdAndUpdate = (req, res, next) => {
     console.log("dentro controller findByIdAndUpdate() ", req.params.id, req.body);
-    Form1.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    Form1.findByIdAndUpdate(req.params.id, req.body, { new: true ,runValidators: true})
         .then((response) => res.status(200).json(response) )
         .catch(next)
 }
