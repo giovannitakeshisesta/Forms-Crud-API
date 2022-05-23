@@ -26,13 +26,12 @@ app.use((req, res, next) => {
 })
 
 app.use((error, req, res, next) => {
-console.log(error)
   if (error instanceof mongoose.Error.ValidationError) {
     error = createError(400, error);
   } else if (error instanceof mongoose.Error.CastError) {
     error = createError(404, "Resource not found, msg from app.js");
   } else if (error.message.includes("E11000")) {
-    error = createError(400, "Already exists, msg from app.js");
+    error = createError(400, `Duplicate :${Object.keys(error.keyPattern)[0]}`);
   } else if (!error.status) {
     error = createError(500, error);
   }

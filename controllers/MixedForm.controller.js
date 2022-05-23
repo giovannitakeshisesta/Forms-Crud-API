@@ -1,9 +1,9 @@
 const createError = require('http-errors')
-const Form4 = require('../models/Form4.model')
+const MixedForm = require('../models/MixedForm.model')
 
 module.exports.create = (req, res, next) => {
     console.log("dentro controller create ", req.body);
-    Form4.create(req.body)
+    MixedForm.create(req.body)
         .then( response => res.status(201).json(response) )
         .catch(next)
 }
@@ -11,7 +11,7 @@ module.exports.create = (req, res, next) => {
 
 module.exports.find = (req, res, next) => {
     console.log("dentro controller find() ");
-    Form4.find()
+    MixedForm.find()
         .then(response => res.status(201).json(response))
         .catch(next)
 }
@@ -19,7 +19,7 @@ module.exports.find = (req, res, next) => {
 
 module.exports.findById = (req, res, next) => {
     console.log("dentro controller findById() ", req.params.id);
-    Form4.findById(req.params.id)
+    MixedForm.findById(req.params.id)
         .then(response => {
             if (!response) {
                 next(createError(404, 'Id not found'))
@@ -32,7 +32,7 @@ module.exports.findById = (req, res, next) => {
 
 module.exports.findByIdAndUpdate = (req, res, next) => {
     console.log("dentro controller findByIdAndUpdate() ", req.params.id, req.body);
-    Form4.findByIdAndUpdate(req.params.id, req.body, { new: true ,runValidators: true})
+    MixedForm.findByIdAndUpdate(req.params.id, req.body, { new: true ,runValidators: true})
         .then((response) => res.status(200).json(response) )
         .catch(next)
 }
