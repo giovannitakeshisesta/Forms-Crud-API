@@ -36,3 +36,11 @@ module.exports.findByIdAndUpdate = (req, res, next) => {
         .then((response) => res.status(200).json(response) )
         .catch(next)
 }
+
+
+module.exports.findByIdAndDelete = (req, res, next) => {
+    console.log("dentro controller findByIdAndDelete() ", req.params.id, );
+    MixedForm.findByIdAndDelete(req.params.id)
+        .then((response) => res.status(202).json(response) )
+        .catch(next)
+}

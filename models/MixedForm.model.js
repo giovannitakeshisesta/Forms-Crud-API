@@ -3,28 +3,42 @@ const mongoose = require('mongoose')
 const EMAIL_PATTERN =
   /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
+const  notEmpty = function (checkBoxList) {
+  if (checkBoxList.length === 0) { return true; }
+  else { return false; }
+};
 const MixedSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'Required - Back message'],
+      unique: true,
       trim: true,
       lowercase: true,
-      unique: true,
-
+      required: [true, 'Required - Back message'],
     },
     email: {
       type: String,
       unique: true,
-      required: [true, 'Required - Back message'],
       trim: true,
       lowercase: true,
-      match: [EMAIL_PATTERN, 'Pattern - Back message']
+      match: [EMAIL_PATTERN, 'Pattern - Back message'],
+      required: [true, 'Required - Back message'],
+    },
+    age:{
+      type:Number,
+      required: [true, 'Required - Back message'],
+      min: [6, 'the min is 6 - Back message']
     },
     radioInput: {
       type: String,
       required: [true, 'Required - Back message'],
-    }
+    },
+    description:{
+      type:String,
+      required: [true, 'Required - Back message'],
+      minlength: [3, 'minlength 3 characters - Back message']
+    },
+    checkBoxList:[]
   },
   {
     toJSON: {

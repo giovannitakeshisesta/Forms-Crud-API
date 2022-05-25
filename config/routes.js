@@ -17,5 +17,6 @@ router.post ('/mixed',      mixedController.create)
 router.get  ('/mixed',      mixedController.find)
 router.get  ('/mixed/:id',  mixedController.findById)
 router.patch('/mixed/:id',  mixedController.findByIdAndUpdate)
+router.delete('/mixed/:id',  mixedController.findByIdAndDelete)
 
 module.exports = router
