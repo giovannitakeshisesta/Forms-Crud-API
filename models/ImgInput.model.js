@@ -1,9 +1,14 @@
 const mongoose = require('mongoose')
 
-const radioSchema = new mongoose.Schema(
+const ImgInputSchema = new mongoose.Schema(
   {
-    radioInput: {
+    image: {
       type: String,
+      required: [true, 'Required - Back message'],
+    },
+    name:{
+      type:String,
+      unique: true,
       required: [true, 'Required - Back message'],
     }
   },
@@ -11,7 +16,6 @@ const radioSchema = new mongoose.Schema(
     toJSON: {
       virtuals: true,
       transform: (doc, ret) => {
-        // delete ret.password
         ret.id = ret._id;
         delete ret._id;
         delete ret.__v
@@ -21,6 +25,6 @@ const radioSchema = new mongoose.Schema(
   }
 )
 
-const Radio = mongoose.model('Radio', radioSchema)
+const ImgInput = mongoose.model('ImgInput', ImgInputSchema)
 
-module.exports = Radio
+module.exports = ImgInput

@@ -3,10 +3,7 @@ const mongoose = require('mongoose')
 const EMAIL_PATTERN =
   /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-const  notEmpty = function (checkBoxList) {
-  if (checkBoxList.length === 0) { return true; }
-  else { return false; }
-};
+
 const MixedSchema = new mongoose.Schema(
   {
     name: {
